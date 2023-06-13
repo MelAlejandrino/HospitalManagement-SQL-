@@ -1,0 +1,49 @@
+INSERT INTO `all_doctors` (`identity_number`, `doctor_name`, `department_name`) VALUES
+('DC001', 'Dr. Mark Wilson', 'Cardiology'),
+('DC002', 'Dr. Emily Brown', 'Orthopedics'),
+('DR001', 'Dr. John Smith', 'Cardiology'),
+('DR002', 'Dr. Jane Doe', 'Orthopedics'),
+('DR003', 'Dr. David Johnson', 'Dermatology');
+
+INSERT INTO `audit_table` (`patient_number`, `doctor_number`, `date_admitted`, `date_discharged`) VALUES
+('PT001', 'DR001', '2022-01-15', '2022-01-23'),
+('PT002', 'DR002', '2022-02-20', '2022-02-20');
+
+INSERT INTO `doc_on_call` (`doctor_number`, `doctor_name`, `qualification`, `fees_per_call`, `payment_due`, `address`, `phone_number`) VALUES
+('DC001', 'Dr. Mark Wilson', 'MD General Medicine', '50.00', '0.00', '789 Oak St', '456-789-0123'),
+('DC002', 'Dr. Emily Brown', 'MD Pediatrics', '40.00', '1.00', '987 Pine St', '789-012-3456');
+
+INSERT INTO `doc_reg` (`doctor_number`, `doctor_name`, `qualification`, `address`, `phone_number`, `salary`, `date_of_joining`) VALUES
+('DR001', 'Dr. John Smith', 'MD Cardiology', '123 Main St', '123-456-7890', '100000.00', '2022-01-01'),
+('DR002', 'Dr. Jane Doe', 'MD Orthopedics', '456 Elm St', '987-654-3210', '100000.00', '2022-02-01');
+
+INSERT INTO `operation_theater` (`operation_theater_number`, `operation_theater_type`, `status`, `charges_per_hour`) VALUES
+('OT001', 'general', 'Y', '100.00'),
+('OT002', 'special', 'N', '150.00');
+
+INSERT INTO `pat_admit` (`patient_number`, `advance_payment`, `mode_of_payment`, `room_number`, `department_name`, `date_of_admission`, `initial_condition`, `diagnosis`, `treatment`, `doctor_number`, `attendant_name`) VALUES
+('PT001', '5000.00', 'Cash', '101', 'Cardiology', '2022-01-15', 'Stable', 'Hypertensions', 'Prescribed medication', 'DR001', 'John Doe'),
+('PT002', '3000.00', 'Credit Card', '201', 'Orthopedics', '2022-02-20', 'Stable', 'Fractured ankle', 'Applied cast', 'DR002', 'Jane Smith');
+
+INSERT INTO `pat_chkup` (`patient_number`, `doctor_number`, `date_of_checkup`, `diagnosis`, `treatment`, `status`) VALUES
+('PT001', 'DR001', '2022-01-15', 'Hypertension', 'Prescribed medication', 'admitted'),
+('PT002', 'DR002', '2022-02-20', 'Fractured ankles', 'Applied cast', 'regular');
+
+INSERT INTO `pat_dis` (`patient_number`, `treatment_given`, `treatment_advice`, `payment_made`, `mode_of_payment`, `date_discharged`) VALUES
+('PT001', 'Prescribed medication', 'Follow-up visit in 3 weeks', '500.00', 'Cash', '2022-01-23'),
+('PT002', 'Applied cast', 'Keep the cast for 4 weeks', '800.00', 'Credit Card', '2022-02-20');
+
+INSERT INTO `pat_entry` (`patient_number`, `patient_name`, `age`, `sex`, `address`, `city`, `phone_number`, `entry_date`, `doctor_name`, `diagnosis`, `department_name`) VALUES
+('PT001', 'John Doe', 31, 'M', '789 Main St', 'New York', '123-456-7890', '2022-01-15', 'Dr. John Smith', 'Hypertension', 'Cardiology'),
+('PT002', 'Jane Smith', 45, 'F', '456 Elm St', 'Los Angeles', '987-654-3210', '2022-02-20', 'Dr. Jane Doe', 'Fractured ankle', 'Orthopedics');
+
+INSERT INTO `pat_opr` (`patient_number`, `date_of_admission`, `date_of_operation`, `doctor_number`, `operation_theater_number`, `type_of_operation`, `condition_before_operation`, `condition_after_operation`, `treatment_advice`, `department_name`) VALUES
+('PT001', '2022-04-15', '2022-04-20', 'DR001', 'OT001', 'Knees Replacement', 'Degenerative joint disease', 'Improved mobility and reduced pain', 'Physical therapy and rehabilitation', 'Orthopedics');
+
+INSERT INTO `pat_reg` (`patient_number`, `date_of_visit`, `diagnosis`, `treatment`, `medicine_recommended`, `status_of_treatment`) VALUES
+('PT001', '2022-01-15', 'Hypertension', 'Prescribed medication', 'Lisinopril', 'ongoing'),
+('PT002', '2022-02-20', 'Fractured ankle', 'Applied cast', 'Ibuprofen', 'completed');
+
+INSERT INTO `room_details` (`room_number`, `room_type`, `status`, `patient_number`, `patient_name`, `charges_per_day`) VALUES
+('101', 'G', 'Y', 'PT001', 'John Doe', '200.00'),
+('201', 'P', 'N', NULL, NULL, '300.00');
